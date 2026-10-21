@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orchard — Run coding agents in parallel git worktrees</title>
+  <meta name="description" content="Orchard gives every task its own git worktree, with a coding agent working in it, extra shells, lazygit alongside, and the branch's PR and CI status. Open source, for macOS.">
+  <meta property="og:title" content="Orchard — One task. One worktree. One agent.">
+  <meta property="og:description" content="Run coding agents in parallel git worktrees, on macOS. Open source, MIT.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="icon.png">
+  <meta name="theme-color" content="#0E0E0E">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><img src="icon.png" alt="" width="24" height="24">Orchard</a>
+      <nav class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a class="nav-gh" href="https://github.com/rodpru/orchard">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="pill">open source · macOS · MIT</p>
+        <h1>One task. One worktree.<br><span class="amber">One agent.</span></h1>
+        <p class="hero-sub mono">Run coding agents in parallel git worktrees, on macOS.</p>
+        <p class="hero-body">Every task gets its own git worktree, with a coding agent working in it, extra shells, lazygit alongside, and the branch's PR and CI status. A sidebar shows which agents are busy, which have news, and which need you. Everything runs locally.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://github.com/rodpru/orchard">
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+            View on GitHub
+          </a>
+          <a class="btn btn-ghost" href="#how">How it works ↓</a>
+        </div>
+        <p class="meta mono">v0.1.0 · build from source · free</p>
+      </div>
+      <div class="wrap">
+        <div class="window">
+          <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">Orchard — demo-repo</span></div>
+          <div class="placeholder placeholder-shot">
+            <span class="tag">placeholder · screenshot</span>
+            <strong>Main app screenshot</strong>
+            <p>Demo repository with 3–4 active worktrees. Sidebar showing the indicators: busy, new output, bell. Agent terminal + lazygit visible. No private chats or emails.</p>
+            <p class="mono small">2880×1800 · dark theme · replace this box with &lt;img src="screenshot.png"&gt;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">The problem</p>
+        <h2>Coding agents are fast.<br>Waiting for them isn't.</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <p class="num mono">01</p>
+            <h3>You wait.</h3>
+            <p>An agent takes minutes per task. One at a time, you spend the day watching a terminal.</p>
+          </article>
+          <article class="card">
+            <p class="num mono">02</p>
+            <h3>They collide.</h3>
+            <p>Run several in the same folder and they edit the same files and break each other's work.</p>
+          </article>
+          <article class="card">
+            <p class="num mono">03</p>
+            <h3>Worktrees are a chore.</h3>
+            <p>Worktrees fix the collisions. By hand, you create them, open terminals, launch agents, track who finished, open PRs, clean up.</p>
+          </article>
+        </div>
+        <p class="closing"><span class="amber">→</span> Orchard puts all of that in one window.</p>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="wrap">
+        <p class="eyebrow">How it works</p>
+        <h2>From shortcut to pull request.</h2>
+        <div class="split">
+          <ol class="steps">
+            <li class="card step">
+              <span class="key amber mono">⌘N</span>
+              <div><h3>New worktree</h3><p>Pick a new or existing branch. Orchard creates the git worktree.</p></div>
+            </li>
+            <li class="card step">
+              <span class="key cyan mono">▸</span>
+              <div><h3>The agent starts</h3><p>Your agent CLI launches inside that worktree — Claude Code, Codex, opencode, or anything that runs in a terminal.</p></div>
+            </li>
+            <li class="card step">
+              <span class="key cyan mono">●</span>
+              <div><h3>The sidebar lights up</h3><p>See at a glance which agents are busy, have new output, or rang the bell.</p></div>
+            </li>
+            <li class="card step">
+              <span class="key amber mono">PR</span>
+              <div><h3>Create PR</h3><p>Review the diff in lazygit, then push and open the PR from the app. Remove the worktree when you're done.</p></div>
+            </li>
+          </ol>
+          <div class="placeholder placeholder-video">
+            <span class="tag">placeholder · gif / video</span>
+            <strong>20–30 s demo loop</strong>
+            <p>⌘N → agent starts in the new worktree → sidebar indicators light up → Create PR.</p>
+            <p class="mono small">MP4/WebM loop, muted, ≤ 4 MB</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <p class="eyebrow">Features</p>
+        <h2>Everything a task needs, side by side.</h2>
+        <div class="grid grid-4">
+          <article class="card feature">
+            <span class="icon amber mono">⌘N</span>
+            <h3>A worktree per task</h3>
+            <p>Create a git worktree on a new or existing branch. Agents run in parallel without file conflicts.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon cyan mono">&gt;_</span>
+            <h3>Your agent, your terminal</h3>
+            <p>Launch Claude Code, Codex, opencode or any CLI inside the worktree. No lock-in.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon amber mono">+</span>
+            <h3>Extra shells</h3>
+            <p>Open more terminal tabs to run tests or a dev server without stopping the agent.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon cyan mono">±</span>
+            <h3>lazygit alongside</h3>
+            <p>A lazygit panel in every worktree. Review diffs and commit without leaving the window.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon amber mono">✓</span>
+            <h3>PR &amp; CI status</h3>
+            <p>See the branch's PR and its checks — passed, failed, pending — via <code>gh</code>.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon cyan mono">↗</span>
+            <h3>Create PR</h3>
+            <p>Push and open the pull request from the app. From agent to PR in one click.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon amber mono">●</span>
+            <h3>Sidebar indicators</h3>
+            <p>Busy, new output, bell. Know who needs you without checking every terminal.</p>
+          </article>
+          <article class="card feature">
+            <span class="icon cyan mono">⌘1</span>
+            <h3>Keyboard first</h3>
+            <p>Pin worktrees, switch with <code>⌘1…⌘9</code>, open in your editor or Finder, or run <code>orchard .</code></p>
+          </article>
+        </div>
+        <p class="extras mono">drag a file into a terminal to paste its path · safe cleanup: asks before deleting the local branch, never deletes the remote · English &amp; Portuguese UI</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap split split-center">
+        <div>
+          <p class="eyebrow">Bring your own agent</p>
+          <h2>Orchard doesn't<br>replace your agent.</h2>
+          <p class="lead">It starts whatever CLI you already use, inside the right worktree. Tested with Claude Code. Works with any terminal agent, for example:</p>
+          <ul class="chips mono">
+            <li>Claude Code</li>
+            <li>Codex</li>
+            <li>opencode</li>
+            <li class="chip-ghost">your own CLI</li>
+          </ul>
+        </div>
+        <div class="window terminal">
+          <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">feature/login — agent</span></div>
+          <pre class="mono"><span class="muted">~/demo-repo/.worktrees/feature-login</span>
+<span class="amber">$</span> claude
+<span class="muted"># or</span> codex <span class="muted">· or</span> opencode <span class="muted">· or</span> ./my-agent
+
+<span class="cyan">●</span> busy   feature/login
+<span class="amber">●</span> new    fix/rate-limit
+<span class="muted">○</span> idle   review/pr-42</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <p class="eyebrow">Local &amp; open source</p>
+        <h2>Local. Open source. No account.</h2>
+        <div class="grid grid-3">
+          <article class="card">
+            <h3>Runs on your machine</h3>
+            <p>The app makes no network requests of its own. Only <code>gh</code> talks to GitHub, with the login you already have.</p>
+          </article>
+          <article class="card">
+            <h3>No telemetry, no account</h3>
+            <p>Nothing to sign up for. Nothing phoning home.</p>
+          </article>
+          <article class="card">
+            <h3>Free and MIT-licensed</h3>
+            <p>A native app built with Tauri, Rust and React. Read the code, fork it, send a PR.</p>
+          </article>
+        </div>
+        <div class="center"><a class="btn btn-ghost" href="https://github.com/rodpru/orchard">Read the source →</a></div>
+      </div>
+    </section>
+
+    <section class="section" id="install">
+      <div class="wrap split split-center">
+        <div>
+          <p class="eyebrow">Requirements &amp; install</p>
+          <h2>Build it from source.</h2>
+          <p class="lead">Orchard v0.1.0 has no packaged release yet. You'll need:</p>
+          <ul class="checks">
+            <li><code>macOS</code></li>
+            <li><code>lazygit</code></li>
+            <li><code>gh</code> signed in with <code>gh auth login</code></li>
+            <li>An agent CLI, e.g. <code>Claude Code</code></li>
+            <li>To build: <code>Rust</code>, <code>Node.js</code>, <code>pnpm</code></li>
+          </ul>
+        </div>
+        <div class="window terminal">
+          <div class="window-bar"><span class="dots"><i></i><i></i><i></i></span><span class="mono">Terminal</span></div>
+          <pre class="mono"><span class="muted"># requirements</span>
+<span class="amber">$</span> brew install lazygit gh rustup
+<span class="amber">$</span> rustup default stable
+<span class="amber">$</span> gh auth login
+
+<span class="muted"># build Orchard</span>
+<span class="amber">$</span> git clone https://github.com/rodpru/orchard.git
+<span class="amber">$</span> cd orchard
+<span class="amber">$</span> pnpm install
+<span class="amber">$</span> pnpm tauri build
+<span class="amber">$</span> cp -R src-tauri/target/release/bundle/macos/Orchard.app \
+    /Applications/
+<span class="amber">$</span> ln -s /Applications/Orchard.app/Contents/MacOS/orchard \
+    /opt/homebrew/bin/orchard
+
+<span class="muted"># then, from any repo</span>
+<span class="amber">$</span> orchard .</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="final">
+      <div class="wrap center">
+        <img class="final-icon" src="icon.png" alt="" width="56" height="56">
+        <h2>An orchard of agents.<br>Each in its own tree.</h2>
+        <a class="btn btn-primary" href="https://github.com/rodpru/orchard">View on GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div class="footer-brand"><img src="icon.png" alt="" width="20" height="20"><strong>Orchard</strong><span class="muted mono">made in Portugal</span></div>
+      <nav class="footer-links mono">
+        <a href="https://github.com/rodpru/orchard">GitHub</a>
+        <a href="https://github.com/rodpru/orchard/blob/main/LICENSE">MIT License</a>
+        <a href="https://github.com/rodpru/orchard/security/policy">Security</a>
+      </nav>
+    </div>
+    <p class="wrap fineprint">Claude Code, Codex and opencode are trademarks of their respective owners. Orchard is not affiliated with them.</p>
+  </footer>
+</body>
+</html>
