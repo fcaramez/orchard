@@ -1,0 +1,98 @@
+{
+  "app": {
+    "name": "Orchard",
+    "loading": "A carregar…"
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "save": "Guardar"
+  },
+  "errors": {
+    "notRepo": "Não é um repositório git"
+  },
+  "sidebar": {
+    "refresh": "Atualizar worktrees e PRs",
+    "settings": "Definições",
+    "newWorktree": "Nova worktree (⌘N)",
+    "removeRepo": "Remover repositório",
+    "removeRepoConfirm": "Remover {{repo}} do Orchard? Os ficheiros e as worktrees no disco ficam.",
+    "addRepo": "Adicionar repositório",
+    "main": "main",
+    "pinned": "Fixadas",
+    "pin": "Fixar no topo",
+    "unpin": "Desafixar"
+  },
+  "worktree": {
+    "detached": "HEAD destacado",
+    "changes_one": "{{count}} alteração",
+    "changes_other": "{{count}} alterações",
+    "createPr": "Criar PR",
+    "createPrTab": "criar PR",
+    "openEditor": "Editor",
+    "reveal": "Finder",
+    "lazygit": "lazygit",
+    "close": "Fechar",
+    "closeHint": "Parar os terminais desta worktree",
+    "remove": "Remover",
+    "agentTab": "agente · {{command}}",
+    "shellTab": "shell {{n}}",
+    "newShell": "Nova shell",
+    "closeTab": "Fechar tab"
+  },
+  "terminal": {
+    "exited": "[processo terminou — Enter para reiniciar]"
+  },
+  "pr": {
+    "tooltip": "#{{number}} {{title}}\n{{status}} · ✓ {{passed}}  ✕ {{failed}}  ● {{pending}}",
+    "status": {
+      "open": "aberto",
+      "draft": "rascunho",
+      "merged": "merged",
+      "closed": "fechado"
+    }
+  },
+  "newWorktree": {
+    "title": "Nova worktree em {{repo}}",
+    "branch": "Branch",
+    "branchPlaceholder": "feat/minha-alteracao",
+    "base": "Base",
+    "baseHint": "Só é usada se a branch ainda não existir.",
+    "local": "Locais",
+    "remote": "Remotas",
+    "agent": "Comando do agente",
+    "agentHint": "Corre na worktree. Vazio abre só uma shell.",
+    "create": "Criar",
+    "creating": "A criar…"
+  },
+  "remove": {
+    "title": "Remover worktree",
+    "body": "Remover a worktree {{branch}} em {{path}}? Os terminais dela vão parar.",
+    "dirty_one": "Tem {{count}} alteração por fazer commit. Marca \"forçar\" para a descartar.",
+    "dirty_other": "Tem {{count}} alterações por fazer commit. Marca \"forçar\" para as descartar.",
+    "force": "Forçar (descarta alterações sem commit)",
+    "deleteBranch": "Apagar também a branch {{branch}}",
+    "confirm": "Remover"
+  },
+  "settings": {
+    "title": "Definições",
+    "agentCommand": "Comando do agente por omissão",
+    "agentCommandHint": "Por exemplo claude, codex ou opencode.",
+    "lazygitCommand": "Comando do lazygit",
+    "editorCommand": "Comando do editor",
+    "editorCommandHint": "Recebe o caminho da worktree, por exemplo code ou cursor.",
+    "worktreeRoot": "Pasta das worktrees",
+    "worktreeRootHint": "Vazio: <repo>.worktrees ao lado do repositório. Senão <pasta>/<repo>/<branch>.",
+    "language": "Idioma",
+    "languageAuto": "Sistema",
+    "languages": {
+      "en": "English",
+      "pt": "Português"
+    }
+  },
+  "empty": {
+    "welcomeTitle": "Corre agentes em worktrees paralelas",
+    "welcomeBody": "Adiciona um repositório git e cria uma worktree por tarefa. Cada uma tem o seu terminal de agente e lazygit.",
+    "pickTitle": "Escolhe uma worktree",
+    "pickBody": "Seleciona uma worktree na barra lateral ou carrega ⌘N para criar uma."
+  }
+}

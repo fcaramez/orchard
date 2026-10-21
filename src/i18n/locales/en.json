@@ -1,0 +1,98 @@
+{
+  "app": {
+    "name": "Orchard",
+    "loading": "Loading…"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "errors": {
+    "notRepo": "Not a git repository"
+  },
+  "sidebar": {
+    "refresh": "Refresh worktrees and PRs",
+    "settings": "Settings",
+    "newWorktree": "New worktree (⌘N)",
+    "removeRepo": "Remove repository",
+    "removeRepoConfirm": "Remove {{repo}} from Orchard? Files and worktrees on disk are kept.",
+    "addRepo": "Add repository",
+    "main": "main",
+    "pinned": "Pinned",
+    "pin": "Pin to top",
+    "unpin": "Unpin"
+  },
+  "worktree": {
+    "detached": "detached HEAD",
+    "changes_one": "{{count}} change",
+    "changes_other": "{{count}} changes",
+    "createPr": "Create PR",
+    "createPrTab": "create PR",
+    "openEditor": "Editor",
+    "reveal": "Finder",
+    "lazygit": "lazygit",
+    "close": "Close",
+    "closeHint": "Stop this worktree's terminals",
+    "remove": "Remove",
+    "agentTab": "agent · {{command}}",
+    "shellTab": "shell {{n}}",
+    "newShell": "New shell",
+    "closeTab": "Close tab"
+  },
+  "terminal": {
+    "exited": "[process exited — press Enter to restart]"
+  },
+  "pr": {
+    "tooltip": "#{{number}} {{title}}\n{{status}} · ✓ {{passed}}  ✕ {{failed}}  ● {{pending}}",
+    "status": {
+      "open": "open",
+      "draft": "draft",
+      "merged": "merged",
+      "closed": "closed"
+    }
+  },
+  "newWorktree": {
+    "title": "New worktree in {{repo}}",
+    "branch": "Branch",
+    "branchPlaceholder": "feat/my-change",
+    "base": "Base",
+    "baseHint": "Used only when the branch does not exist yet.",
+    "local": "Local",
+    "remote": "Remote",
+    "agent": "Agent command",
+    "agentHint": "Runs in the worktree. Leave empty for a plain shell.",
+    "create": "Create",
+    "creating": "Creating…"
+  },
+  "remove": {
+    "title": "Remove worktree",
+    "body": "Remove worktree {{branch}} at {{path}}? Its terminals will be stopped.",
+    "dirty_one": "It has {{count}} uncommitted change. Tick \"force\" to discard it.",
+    "dirty_other": "It has {{count}} uncommitted changes. Tick \"force\" to discard them.",
+    "force": "Force (discard uncommitted changes)",
+    "deleteBranch": "Also delete branch {{branch}}",
+    "confirm": "Remove"
+  },
+  "settings": {
+    "title": "Settings",
+    "agentCommand": "Default agent command",
+    "agentCommandHint": "For example claude, codex or opencode.",
+    "lazygitCommand": "lazygit command",
+    "editorCommand": "Editor command",
+    "editorCommandHint": "Receives the worktree path, for example code or cursor.",
+    "worktreeRoot": "Worktree folder",
+    "worktreeRootHint": "Empty: <repo>.worktrees next to the repository. Otherwise <folder>/<repo>/<branch>.",
+    "language": "Language",
+    "languageAuto": "System",
+    "languages": {
+      "en": "English",
+      "pt": "Português"
+    }
+  },
+  "empty": {
+    "welcomeTitle": "Run agents in parallel worktrees",
+    "welcomeBody": "Add a git repository, then create a worktree for each task. Each one gets its own agent terminal and lazygit.",
+    "pickTitle": "Pick a worktree",
+    "pickBody": "Select a worktree in the sidebar or press ⌘N to create one."
+  }
+}
