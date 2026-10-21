@@ -2,6 +2,8 @@
 
 Run coding agents in parallel git worktrees, on macOS.
 
+![Orchard with Claude Code in the agent terminal and lazygit beside it](docs/screenshot.png)
+
 Each task gets its own worktree, and each worktree gets:
 
 - an agent terminal running Claude Code, Codex, opencode or any other CLI;
