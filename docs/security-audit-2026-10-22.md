@@ -14,9 +14,9 @@ Line references are to `f29ec2c`.
 
 ### S2 · Unsigned manifest allows rollback to any previously signed release — **High**
 
-`latest.json` is a plain asset; the minisign signature covers only the archive. The plugin's default comparator is `release.version > current_version` and nothing else. A `latest.json` claiming `"version": "99.0.0"` that points at the old `v0.2.0` archive and its genuine signature passes verification, and every install with auto-update on (the default, `config.rs:57`) reinstalls the old build at each 6-hour check. Needs only write access to release assets — repo write, a leaked `GITHUB_TOKEN` (every `release.yml` job has `contents: write`), or a compromised action — not the signing key.
+`latest.json` is a plain asset; the minisign signature covers only the archive. The plugin's default comparator is `release.version > current_version` and nothing else. Once at least two signed releases exist, a `latest.json` claiming `"version": "99.0.0"` that points at the older signed archive and its genuine signature passes verification, and every install with auto-update on (the default, `config.rs:57`) reinstalls the old build at each 6-hour check. (v0.2.0 and v0.2.1 shipped without an updater and have no signed archive, so the first signed release cannot be rolled back to anything.) Needs only write access to release assets — repo write, a leaked `GITHUB_TOKEN` (every `release.yml` job has `contents: write`), or a compromised action — not the signing key.
 
-`tauri-plugin-updater` 2.14.0 (what resolves today) has `plugins.updater.require_signed_version`; its doc comment describes exactly this attack. It checks a `version:` field in the minisign trusted comment, which `@tauri-apps/cli` 2.12.3 already writes. It rejects releases signed before the CLI recorded the version — but there are none: v0.2.0 shipped without an updater.
+`tauri-plugin-updater` 2.14.0 (what resolves today) has `plugins.updater.require_signed_version`; its doc comment describes exactly this attack. It checks a `version:` field in the minisign trusted comment, which `@tauri-apps/cli` 2.12.3 already writes. It rejects releases signed before the CLI recorded the version — but there are none: no release before the updater was signed.
 
 **Fix:** set `"requireSignedVersion": true` under `plugins.updater` in `tauri.conf.json` before the first signed release.
 
@@ -26,11 +26,13 @@ Line references are to `f29ec2c`.
 
 **Fix (least code):** drop in-app install on Linux. `update_check` reports the version; the sidebar button opens the release page or shows `sudo apt install ./orchard_amd64.deb` (already in the README). Alternative: copy and re-verify inside the privileged step (`pkexec sh -c 'd=$(mktemp -d) && cp "$1" "$d/p.deb" && echo "$2  $d/p.deb" | sha256sum -c && dpkg -i "$d/p.deb"' sh <path> <sha256>`).
 
-### S4 · OSC 8 hyperlinks in terminal output bypass the URL allowlist — **Medium-Low**
+### S4 · OSC 8 hyperlinks in terminal output do nothing — **Low (UX)**
 
-`src/components/Terminal.tsx:71-83` sets no `linkHandler`. xterm 6's default for OSC 8 links (`@xterm/xterm/src/browser/OscLinkProvider.ts:114`) is `confirm()` then `window.open()` + `location.href = uri` — not `api.openUrl`, not the opener capability — so neither the https/localhost allowlist (`src/lib/api.ts:57`) nor `capabilities/default.json` applies. Any program an agent runs can print `\e]8;;file:///…\e\\click me\e]8;;\e\\` with arbitrary display text. SECURITY.md:13 ("can only open https links…") is false for this path.
+`src/components/Terminal.tsx:71-83` sets no `linkHandler`. Without one, xterm 6 drops non-http(s) OSC 8 targets (`allowNonHttpProtocols` is unset, `OscLinkProvider.ts:72`), and its default activation for http(s) (`OscLinkProvider.ts:114`, `confirm()` then `window.open()`) does nothing in this webview: `confirm()` returns false in WKWebView and there is no new-window handler. So OSC 8 links are inert; they do not bypass the URL allowlist, and SECURITY.md's statement about which links the webview opens holds.
 
-**Fix:** `linkHandler: { activate: (_e, uri) => void api.openUrl(uri).catch(() => undefined) }` in the XTerm options.
+The risk is in fixing it naively: an OSC 8 link's visible text can show any URL while its target is another, so a handler that opens on a single click lets a hostile file or web page echoed by an agent disguise a link.
+
+**Fix:** if OSC 8 links should open, route them through `api.openUrl` and confirm the real target first (a native `ask` dialog showing the URI); otherwise leave them inert.
 
 ### S5 · Release is published before assets exist; a failed build leaves an empty "latest" — **Medium (availability)**
 
@@ -114,7 +116,7 @@ Run against the dependency set a release build resolves today (the committed loc
 ## Suggested order
 
 1. S1 — regenerate and commit `Cargo.lock`, `--locked` in CI. Ten minutes; unblocks trusting anything else about the updater.
-2. S2 (`requireSignedVersion: true`), S5 (draft release → publish last), S4 (one-line `linkHandler`).
+2. S2 (`requireSignedVersion: true`), S5 (draft release → publish last).
 3. S3 — decide whether Linux in-app install is worth keeping; dropping it also closes P6.
 4. P1, P2, P3 — the three users will actually feel.
 5. S6 — update trust-chain hardening, once the plugin version is pinned.
